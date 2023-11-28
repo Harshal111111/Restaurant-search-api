@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: <%= ENV['HOST'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+development:
+  <<: *default
+  database: <%= ENV['POSTGRES_DB'] %>
+test:
+  <<: *default
+  database: restaurant_test
+production:
+  <<: *default
+  database: restaurant_production

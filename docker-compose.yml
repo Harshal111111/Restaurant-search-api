@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bundle exec rails server -e development -p 3000 -b '0.0.0.0'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: restaurant_development
+      GOOGLE_API_KEY: AIzaSyCqWHKkgLxJiSwS63bxfWpQ-XhSQs65H5c
+      HOST: db
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
