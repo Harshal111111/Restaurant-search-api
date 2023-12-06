@@ -2,8 +2,8 @@
 
 module Api
   module V1
-    class RestaurantsController < ApplicationController
-      def index
+    class RestaurantsController < ApplicationController      
+      def search
         restaurants = RestaurantSearchService.call(restaurant_params[:search_place], current_user)
         render json: { restaurants: restaurants }
       rescue StandardError => e

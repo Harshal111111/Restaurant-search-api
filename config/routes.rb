@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   namespace :api do
     namespace :v1 do
-      resources :restaurants, only: :index
+      post '/search', to: 'restaurants#search'
       resources :user_favourites, only: %i[create]
       delete '/user_favourites/:google_place_id', to: 'user_favourites#destroy', as: 'delete_user_favourite'
       devise_for :users, controllers: { sessions: 'api/v1/sessions' }
